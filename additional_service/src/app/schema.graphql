@@ -1,0 +1,9 @@
+type Account @key(fields: "id") {
+  id: ID! @external
+}
+
+type User @key(fields: "id account { id }") @extends {
+  id: ID! @external
+  account: Account! @external
+  foo: Boolean!
+}

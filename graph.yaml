@@ -1,0 +1,9 @@
+subgraphs:
+  - name: main-service
+    routing_url: http://main-service:8074/graphql
+    introspection:
+      url: http://main-service:8074/graphql
+  - name: additional-service
+    routing_url: http://additional-service:8064/graphql
+    introspection:
+      url: http://additional-service:8064/graphql

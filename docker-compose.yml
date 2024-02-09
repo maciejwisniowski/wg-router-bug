@@ -1,0 +1,54 @@
+version: "3.7"
+
+services:
+  wg-router:
+    image: ghcr.io/wundergraph/cosmo/router:latest
+    # or for own-compiled router
+    # image: 599893332537.dkr.ecr.eu-west-1.amazonaws.com/orbitvu-shr-wundergraphfederation:0.0.1_alpha6
+    # command:
+    #   [
+    #     "/dist/run.sh"
+    #   ]
+    ports:
+      - "3002:3002"
+    environment:
+      FEDERATED_GRAPH_NAME: dev
+      TRACING_ENABLED: false
+      CORS_ALLOW_CREDENTIALS: true
+      LISTEN_ADDR: 0.0.0.0:3002
+      CONFIG_PATH: config.yaml
+      ROUTER_CONFIG_PATH: graph_2.json
+    volumes:
+      - ./config.yaml:/config.yaml
+      - ./graph.json:/graph_2.json
+      - ./graph.yaml:/graph_2.yaml
+      # for own-compiled router
+      # - ./config.yaml:/dist/config.yaml
+      # - ./graph.json:/dist/graph_2.json
+      # - ./graph.yaml:/dist/graph_2.yaml
+
+  additional-service:
+    image: bug-additional-service
+    build:
+      context: additional_service
+    command: [
+      "python3",
+      "/home/app/main.py",
+      "runserver",
+      "0.0.0.0:8064",
+    ]
+    ports:
+      - "8064:8064"
+
+  main-service:
+    image: bug-main-service
+    build:
+      context: main_service
+    command: [
+      "python3",
+      "/home/app/main.py",
+      "runserver",
+      "0.0.0.0:8074",
+    ]
+    ports:
+      - "8074:8074"

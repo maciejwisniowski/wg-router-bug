@@ -1,0 +1,13 @@
+type Account @key(fields: "id") {
+  id: ID!
+}
+
+type User @key(fields: "id account { id }") {
+  id: ID!
+  account: Account!
+  name: String!
+}
+
+type Query {
+  test: User!
+}

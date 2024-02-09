@@ -1,0 +1,55 @@
+# config.yaml
+
+graph:
+  name: dev 
+
+introspection_enabled: true
+playground_enabled: true
+
+headers:
+  all:
+    request:
+      - op: propagate
+        named: X-Apollo-Gateway-Claims
+      - op: propagate
+        named: Sec-Fetch-Site
+      - op: propagate
+        named: Referer
+      - op: propagate
+        named: Connection
+      - op: propagate
+        named: X-Forwarded-Host
+      - op: propagate
+        named: Accept
+      - op: propagate
+        named: Sec-Ch-Ua-Mobile
+      - op: propagate
+        named: Origin
+      - op: propagate
+        named: Authorization
+      - op: propagate
+        named: X-Forwarded-Proto
+      - op: propagate
+        named: Sec-Ch-Ua
+      - op: propagate
+        named: Sec-Ch-Ua-Platform
+      - op: propagate
+        named: Sec-Fetch-Mode
+      - op: propagate
+        named: Accept-Encoding
+      - op: propagate
+        named: Cookie
+      - op: propagate
+        named: Content-Length
+      - op: propagate
+        named: Apollographql-Client-Name
+      - op: propagate
+        named: Content-Type
+      - op: propagate
+        named: User-Agent
+      - op: propagate
+        named: Sec-Fetch-Dest
+      - op: propagate
+        named: X-Forwarded-Port
+      - op: propagate
+        named: Accept-Language
